@@ -1,6 +1,7 @@
 from flask import url_for
 from markupsafe import escape
 from flask import Flask
+from flask import redirect
 
 app = Flask(__name__)
 
@@ -22,7 +23,9 @@ def test_url_for():
     print(url_for('test_url_for'))  # 输出：/test
     # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL 后面。
     print(url_for('test_url_for', num=2))  # 输出：/test?num=2
-    return 'Test page'
+    # return 'Test page'
+    # can also use redirect to redirect to the page of user_page
+    return redirect(url_for('user_page', name='greyli'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12345, debug=True)
+    app.run(host='0.0.0.0', port=6009, debug=True)
